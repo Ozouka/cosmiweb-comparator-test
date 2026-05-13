@@ -18,8 +18,4 @@ services:
       - key: SCOPES
         value: write_products,read_products,write_content
       - key: DATABASE_URL
-        value: file:/data/sqlite.db
-    disk:
-      name: sqlite-data
-      mountPath: /data
-      sizeGB: 1
+        value: file:./data/dev.sqlite
