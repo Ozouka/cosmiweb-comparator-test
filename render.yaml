@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: cosmiweb-comparator
+    env: node
+    rootDir: cosmiweb-comparator-test
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npx prisma migrate deploy && npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SHOPIFY_API_KEY
+        sync: false
+      - key: SHOPIFY_API_SECRET
+        sync: false
+      - key: SHOPIFY_APP_URL
+        sync: false
+      - key: SCOPES
+        value: write_products,read_products,write_content
+      - key: DATABASE_URL
+        value: file:/data/sqlite.db
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
