@@ -2,7 +2,7 @@
 
 client_id = "b0eaf2f0963ede46815ec2c31b9bc01b"
 name = "cosmiweb-comparator-test"
-application_url = "https://example.com"
+application_url = "https://cosmiweb-comparator-test.onrender.com"
 embedded = true
 
 [access_scopes]
@@ -44,7 +44,7 @@ api_version = "2026-07"
   topics = [ "app/scopes_update" ]
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://cosmiweb-comparator-test.onrender.com/auth/callback", "https://cosmiweb-comparator-test.onrender.com/auth/shopify/callback" ]
 
 [app_proxy]
 url = "https://cosmiweb-comparator-test.onrender.com/apps/comparator"
