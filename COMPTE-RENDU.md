@@ -35,7 +35,7 @@ Le front fetch la config à chaque chargement de la page de comparaison. Si le m
 
 | Choix                             | Pourquoi |
 |-----------------------------------|----------|
-| Web Components natifs             | Encapsulation propre, 0 dépendance, et également possibilité de libéré de la RAM/soulager le CPU en removant les events grâce audisconnected CallBack |
+| Web Components natifs             | Encapsulation propre, 0 dépendance et également possibilité de libérer de la RAM/soulager le CPU en removant les events grâce audisconnected CallBack |
 | localStorage + CustomEvent        | Solution simple car pas besoin de serveur pour stocker la sélection temporaire du visiteur |
 | App Proxy plutôt que fetch direct | Le storefront n'a pas accès à l'Admin API. L'App Proxy authentifie la requête côté Shopify et la redirige direct vers notre app |
 | SQLite + Prisma pour les stats    | Pas de BDD externe supabase en postegresql ou autre à gérer.|
@@ -89,7 +89,7 @@ Le front fetch la config à chaque chargement de la page de comparaison. Si le m
 **Outil :** Claude Code
 **Tâche :** "Crée le state management avec localStorage et CustomEvent pour gérer une liste de handles produits au maximum 4"  
 **Output :** Classe statique fonctionnelle avec getProducts, addProduct, removeProduct, hasProduct, isFull, clear, et dispatch d'events
-**Delta :** Le code généré était bon en soit. J'ai juste ajouté le `if (!window.ComparatorStore)` après avoir rencontré un bug de double-chargement
+**Delta :** Le code généré était bon en soi. J'ai juste ajouté le `if (!window.ComparatorStore)` après avoir rencontré un bug de double-chargement
 **Valeur :** ~30 minutes économisées
 
 ### Usage 3 — Web Components 
@@ -106,7 +106,7 @@ Le front fetch la config à chaque chargement de la page de comparaison. Si le m
 **Tâche :** "Crée les routes React Router pour l'App Proxy : GET config (lit le metafield), GET products (query Admin GraphQL par handles), POST track (upsert Prisma)"  
 **Output :** Trois fichiers de routes avec authenticate.public.appProxy, queries GraphQL et logique Prisma  
 **Delta :** La query GraphQL products initiale utilisait l'API Storefront, j'ai corrigé pour utiliser l'Admin API (puisqu'on est côté serveur avec un token admin via le proxy). L'URL du proxy dans le TOML était incorrecte, j'ai dû debugger avec des console.log pour trouver le bug entre le routing React Router et ce que Shopify envoie.  
-**Valeur :** ~1h économisée mais je pense que les patterns d'authentification App Proxy sont mal documentés car l'IA a eu un pas de mal au début
+**Valeur :** ~1h économisée mais je pense que les patterns d'authentification App Proxy sont mal documentés car l'IA a eu un peu de mal au début
 
 ### Usage 5 — Pages admin (Config + Stats)
 
@@ -124,6 +124,6 @@ Le front fetch la config à chaque chargement de la page de comparaison. Si le m
 |----------|--------|
 | Temps total estimé économisé | environ 4-5h |
 | Parties entièrement écrites à la main | CSS final, intégration Liquid dans le thème |
-| Principal apport de l'IA | Queries GraphQL et rapidité au niveua de l'écriture de webcomponents |
+| Principal apport de l'IA | Queries GraphQL et rapidité au niveau de l'écriture de webcomponents |
 
 Mon approche : j'utilise l'IA comme un collègue de travail avec qui je pair program. Dès que ça touche à de l'intégration spécifique de Shopify  je prends la main car l'IA fait souvent des erreurs sur ces sujets même en liant les mcp de Shopify. J'essaye de gagner un maximum de temps sur l'écriture de syntaxe classique
