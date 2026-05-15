@@ -32,3 +32,18 @@ model Session {
   refreshToken        String?
   refreshTokenExpires DateTime?
 }
+
+model ComparisonStat {
+  id             String   @id @default(cuid())
+  shop           String
+  productId      String
+  productTitle   String   @default("")
+  productImage   String   @default("")
+  compareCount   Int      @default(1)
+  lastComparedAt DateTime @default(now())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([shop, productId])
+  @@index([shop, compareCount])
+}
