@@ -16,8 +16,7 @@ if (!customElements.get('compare-drawer')) {
 
     connectedCallback() {
       if (
-        window.location.pathname === '/pages/contact' &&
-        window.location.search === '?view=compare'
+        window.location.pathname === '/pages/comparaison'
       ) {
         return;
       }
