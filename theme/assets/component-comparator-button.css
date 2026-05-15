@@ -1,0 +1,44 @@
+.comparator-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.comparator-button--active {
+  background: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+  border-color: rgb(var(--color-foreground));
+}
+
+.comparator-button--active:hover {
+  opacity: 0.7;
+}
+
+.comparator-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.comparator-button__icon {
+  display: flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.comparator-button__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.comparator-button__label {
+  white-space: nowrap;
+}

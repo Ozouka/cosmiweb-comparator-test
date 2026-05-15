@@ -674,6 +674,13 @@
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+              {%- when 'compare_button' -%}
+                <div {{ block.shopify_attributes }}>
+                  {%- render 'compare-button',
+                    product_handle: product.handle,
+                    product_title: product.title
+                  -%}
+                </div>
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -927,6 +934,11 @@
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
         }
       ]
+    },
+    {
+      "type": "compare_button",
+      "name": "Compare button",
+      "limit": 1
     },
     {
       "type": "description",

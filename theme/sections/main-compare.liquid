@@ -1,0 +1,65 @@
+{{ 'section-compare-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'comparator-store.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'compare-page.js' | asset_url }}" defer="defer"></script>
+
+<compare-page
+  class="page-width section-{{ section.id }}-padding"
+  data-config-url="/apps/comparator/config"
+  data-products-url="/apps/comparator/products"
+  data-track-url="/apps/comparator/track"
+  data-collection-url="{{ routes.collections_url }}/all"
+>
+
+  <h1 class="compare-page__title h1">{{ page.title | default: 'Comparaison de produits' }}</h1>
+
+  <div class="compare-page__loading hidden">
+    <div class="compare-page__spinner"></div>
+    <p>Chargement des produits...</p>
+  </div>
+
+  <div class="compare-page__table-wrapper"></div>
+
+  <div class="compare-page__empty hidden">
+    {% render 'component-icon', type: 'chart-bar', class: 'compare-page__empty-icon' %}
+    <p>Aucun produit à comparer pour le moment.</p>
+    <p>Ajoutez des produits depuis notre catalogue pour les comparer côte à côte.</p>
+    <a href="{{ routes.collections_url }}/all" class="button button--primary">
+      Parcourir les produits
+    </a>
+  </div>
+
+  <button type="button" class="compare-page__clear button button--secondary hidden">
+    Vider la comparaison
+  </button>
+</compare-page>
+
+{% schema %}
+{
+  "name": "Comparaison de produits",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement haut",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Espacement bas",
+      "default": 36
+    }
+  ],
+  "templates": ["page"]
+}
+{% endschema %}

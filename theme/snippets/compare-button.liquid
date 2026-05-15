@@ -1,0 +1,29 @@
+{% comment %}
+  Renders the compare button for a product.
+  Accepts:
+  - product_handle: {String} The product handle
+  - product_title: {String} The product title (for aria-label)
+{% endcomment %}
+
+{{ 'component-comparator-button.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'comparator-store.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'compare-button.js' | asset_url }}" defer="defer"></script>
+
+<compare-button
+  data-product-handle="{{ product_handle }}"
+  data-label-default="Comparer"
+  data-label-active="Ajouté"
+  data-label-full="Maximum atteint (4)"
+>
+  <button
+    type="button"
+    class="comparator-button"
+    aria-label="Ajouter {{ product_title }} à la comparaison"
+    aria-pressed="false"
+  >
+    <span class="comparator-button__icon">
+      {% render 'component-icon', type: 'chart-bar' %}
+    </span>
+    <span class="comparator-button__label">Comparer</span>
+  </button>
+</compare-button>

@@ -1,0 +1,38 @@
+{% doc %}
+  Renders SVG icons optimized for UI components. Supports multiple icon types
+  with consistent styling and accessibility features.
+
+  @param {string} type - Icon type to display. Required.
+
+  @param {string} [class] - Additional CSS classes to apply.
+  @param {boolean} [aria_hidden] - Whether to hide from screen readers. Default: true.
+  @param {string} [aria_label] - Accessibility label when not hidden.
+  @param {string} [attr] - Additional attributes to apply.
+
+  @example
+  {% render 'component-icon', type: 'arrow-right' %}
+  @example
+  {% render 'component-icon', 
+    type: 'chart-bar', 
+    size: '24', 
+    class: 'text-primary',
+    aria_hidden: false,
+    aria_label: 'Chart bar'
+  %}
+{% enddoc %}
+
+{%- liquid
+  assign icon_type = type | default: 'chart-bar'
+  assign aria_hidden = aria_hidden | default: false, allow_false: true
+-%}
+
+{%- case icon_type -%}
+  {%- when 'chart-bar' -%}
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  class="{{ class }}" aria-hidden="{{ aria_hidden }}"
+    {%- if aria_label %}
+    aria-label="{{ aria_label }}"
+    {% endif %}
+    {{ attr }}>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+    </svg>
+{%- endcase -%}

@@ -1,0 +1,21 @@
+{{ 'component-comparator-drawer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'comparator-store.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'compare-drawer.js' | asset_url }}" defer="defer"></script>
+
+<compare-drawer
+  data-compare-url="{{ pages['comparaison'].url | default: '/pages/comparaison' }}"
+  data-products-url="/apps/comparator/products"
+>
+  <div class="comparator-drawer__inner">
+    <div class="comparator-drawer__products"></div>
+    <div class="comparator-drawer__actions">
+      <a
+        href="{{ pages['comparaison'].url | default: '/pages/comparaison' }}"
+        class="comparator-drawer__cta"
+      >
+        Comparer
+        <span class="comparator-drawer__count">0</span>
+      </a>
+    </div>
+  </div>
+</compare-drawer>
