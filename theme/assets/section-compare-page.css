@@ -59,8 +59,13 @@
   text-align: center;
 }
 
+.compare-page__table-wrapper {
+  padding: 1rem;
+}
+
 .compare-page__clear {
   margin-top: 2.4rem;
+  margin-left: 1rem;
 }
 
 .compare-table {
